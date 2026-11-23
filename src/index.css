@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+:root {
+  --color-navy: #0F2340;
+  --color-steel: #1E3A5F;
+  --color-orange: #E8601C;
+  --color-amber: #F0A32E;
+  --color-offwhite: #F7F8FA;
+  --color-white: #FFFFFF;
+  --color-slate: #475569;
+  --color-charcoal: #0B1622;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+    color: #475569;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* WCAG 2.2 AA high-visibility keyboard focus indicator */
+  *:focus-visible {
+    outline: 3px solid #F0A32E;
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes hero-copy-appear {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes hero-media-appear {
+    from { opacity: 0; transform: scale(1.035); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes menu-appear {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-copy-enter { animation: hero-copy-appear 680ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-media-enter { animation: hero-media-appear 950ms ease-out both; }
+  .mobile-menu-enter { animation: menu-appear 260ms ease-out both; }
+  .accordion-panel-enter { animation: hero-copy-appear 240ms ease-out both; }
+
+  .reveal-ready {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 650ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-ready.is-visible { opacity: 1; transform: translateY(0); }
+
+  @media (hover: hover) {
+    .interactive-card {
+      transition: transform 260ms ease, box-shadow 260ms ease;
+    }
+
+    .interactive-card:hover,
+    .interactive-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(15, 35, 64, 0.12);
+    }
+
+    a:hover .photo-preview-motion {
+      transform: scale(1.025);
+    }
+  }
+
+  .photo-preview-motion { transition: transform 700ms ease; }
+}
